@@ -1,0 +1,8 @@
+{
+  "name": "ClearFeed — YouTube Members-Only Hider",
+  "description": "Manifest V3 Chrome extension builder, source inspector, and live YouTube feed simulator for hiding Members Only videos, posts, and shelves.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
