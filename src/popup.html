@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClearFeed Settings</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup">
+      <header class="header">
+        <div class="brand">
+          <img src="../icons/icon48.png" alt="ClearFeed icon" class="brand-icon" />
+          <div>
+            <h1 class="title">ClearFeed</h1>
+            <p class="subtitle">YouTube Members-Only Filter</p>
+          </div>
+        </div>
+        <label class="switch" aria-label="Enable ClearFeed">
+          <input type="checkbox" id="enabled" />
+          <span class="slider"></span>
+        </label>
+      </header>
+
+      <section class="stats" aria-live="polite">
+        <div class="stat">
+          <span class="stat-label">Filtered on tab</span>
+          <strong class="stat-value" id="tab-count">0</strong>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Filter status</span>
+          <strong class="stat-value" id="status-text">Hiding</strong>
+        </div>
+        <button type="button" id="rescan-btn" class="rescan-btn">Rescan</button>
+      </section>
+
+      <section class="group">
+        <span class="group-label">Filter behavior</span>
+        <div class="segmented" role="radiogroup" aria-label="Filter behavior">
+          <button type="button" class="seg-btn" data-mode="hide">Hide completely</button>
+          <button type="button" class="seg-btn" data-mode="dim">Dim &amp; blur</button>
+        </div>
+      </section>
+
+      <section class="group">
+        <span class="group-label">Surfaces</span>
+        <label class="check-row">
+          <span>Home &amp; Channel feeds</span>
+          <input type="checkbox" id="hideHomeAndFeed" />
+        </label>
+        <label class="check-row">
+          <span>Subscriptions feed</span>
+          <input type="checkbox" id="hideSubscriptions" />
+        </label>
+        <label class="check-row">
+          <span>Search &amp; Watch sidebar</span>
+          <input type="checkbox" id="hideSearchAndSidebar" />
+        </label>
+        <label class="check-row">
+          <span>Shorts &amp; Community posts</span>
+          <input type="checkbox" id="hideShortsAndPosts" />
+        </label>
+        <label class="check-row">
+          <span>Hide "Join" buttons &amp; shelves</span>
+          <input type="checkbox" id="hideJoinButtonsAndShelves" />
+        </label>
+        <label class="check-row">
+          <span>Multi-language badge detection</span>
+          <input type="checkbox" id="multiLanguage" />
+        </label>
+        <label class="check-row">
+          <span>Show count badge on icon</span>
+          <input type="checkbox" id="showBadgeCount" />
+        </label>
+      </section>
+
+      <section class="group">
+        <span class="group-label">Channel allowlist</span>
+        <form id="allowlist-form" class="allowlist-form">
+          <input
+            type="text"
+            id="channel-input"
+            placeholder="@channelhandle"
+            autocomplete="off"
+          />
+          <button type="submit">Add</button>
+        </form>
+        <ul id="allowlist-items" class="allowlist-items"></ul>
+      </section>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

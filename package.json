@@ -1,37 +1,16 @@
 {
-  "name": "react-example",
+  "name": "clearfeed-youtube-members-hider",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.1.0",
   "type": "module",
+  "description": "Manifest V3 Chrome extension that hides Members-only content on YouTube.",
   "scripts": {
-    "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build",
-    "preview": "vite preview",
-    "clean": "rm -rf dist server.js",
-    "lint": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@google/genai": "^2.4.0",
-    "@tailwindcss/vite": "^4.3.3",
-    "@vitejs/plugin-react": "^6.1.1",
-    "dotenv": "^17.2.3",
-    "express": "^4.21.2",
-    "jszip": "^3.10.2",
-    "lucide-react": "^0.546.0",
-    "motion": "^12.23.24",
-    "react": "^19.0.1",
-    "react-dom": "^19.0.1",
-    "vite": "^8.3.0"
+    "build": "node scripts/build.mjs",
+    "lint": "node scripts/lint.mjs",
+    "clean": "rm -rf dist",
+    "dev": "node -e \"import('node:http').then(async ({default:http})=>{const fs=await import('node:fs');const path=await import('node:path');const types={'.html':'text/html','.css':'text/css','.js':'text/javascript','.png':'image/png','.json':'application/json','.zip':'application/zip'};http.createServer((req,res)=>{const url=(req.url||'/').split('?')[0];if(url==='/'){res.writeHead(302,{Location:'/src/popup.html'});return res.end();}const fp=path.resolve(url.replace(/^\\//,''));if(!fp.startsWith(process.cwd())||!fs.existsSync(fp)||fs.statSync(fp).isDirectory()){res.writeHead(404);return res.end('Not found');}res.writeHead(200,{'Content-Type':types[path.extname(fp)]||'application/octet-stream'});fs.createReadStream(fp).pipe(res);}).listen(3000,'0.0.0.0',()=>console.log('Extension popup preview on :3000'));})\""
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.3.0",
-    "autoprefixer": "^10.4.21",
-    "esbuild": "^0.25.0",
-    "tailwindcss": "^4.3.3",
-    "tsx": "^4.21.0",
-    "typescript": "^7.0.2",
-    "@types/express": "^4.17.21"
+    "jszip": "^3.10.2"
   }
 }

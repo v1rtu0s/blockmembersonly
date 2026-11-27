@@ -1,0 +1,26 @@
+/* ClearFeed — YouTube Members-Only Hider Styles */
+
+.clearfeed-hidden {
+  display: none !important;
+}
+
+.clearfeed-dimmed {
+  opacity: 0.24 !important;
+  filter: grayscale(0.85) !important;
+  transition: opacity 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 180ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.clearfeed-dimmed:hover {
+  opacity: 0.92 !important;
+  filter: grayscale(0) !important;
+}
+
+/* Optional: hide channel "Join" buttons and membership promotion shelves */
+html.clearfeed-hide-join #sponsor-button,
+html.clearfeed-hide-join ytd-recognition-shelf-renderer,
+html.clearfeed-hide-join ytd-sponsorships-offer-renderer,
+html.clearfeed-hide-join ytd-membership-offer-renderer,
+html.clearfeed-hide-join ytd-channel-about-metadata-renderer #sponsor-button {
+  display: none !important;
+}
