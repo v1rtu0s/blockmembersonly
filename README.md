@@ -46,11 +46,4 @@ Outputs in `dist/`:
 
 ## CI & Releases
 
-Pushes, pull requests, and manual runs trigger `.github/workflows/build.yml`, which runs `npm run lint` (validating `manifest.json`, icons, referenced files, and JS syntax), runs `npm run build`, and uploads the `.zip` as the `clearfeed-youtube-members-hider-zip` workflow artifact.
-
-To publish a GitHub Release with the `.zip` attached automatically:
-
-```bash
-git tag v1.1.0
-git push origin v1.1.0
-```
+Pushes to `main`/`master`, version tags, and manual **Run workflow** triggers run `.github/workflows/build.yml`, which validates `manifest.json` and JS syntax (`npm run lint`), builds the `.zip` (`npm run build`), uploads it as a workflow artifact, and automatically publishes or updates the `v<version>` release on the **Releases** page using the version in `manifest.json`. Pull requests run validation and upload the artifact without publishing a release.
