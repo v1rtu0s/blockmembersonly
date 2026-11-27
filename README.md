@@ -1,26 +1,34 @@
-# ClearFeed — Hide YouTube Members-Only Content
+# ClearFeed
 
-A Manifest V3 Chrome extension that automatically hides or dims Members-only videos, early-access releases, Shorts, Community posts, and "Join" shelves on YouTube.
+A Manifest V3 browser extension for Chrome, Brave, Edge, and Arc that hides or dims YouTube Members-only videos, early-access ("Members first") uploads, Shorts, Community posts, and "Join" shelves.
 
-## Features
+YouTube mixes paywalled uploads into regular feeds with no native way to filter them out. ClearFeed strips them from the DOM locally as you browse.
 
-- **3-layer YouTube DOM detection**: Matches legacy Polymer badges, 2025–2026 `yt-badge-shape` / `ytBadgeShapeMembership` lockups, and exact leaf-node labels (resilient to CSS class renames and non-breaking spaces).
-- **Hide or Dim & Blur**: Collapse Members-only items completely (`display: none`) or dim them with hover-to-peek.
-- **Granular controls**: Independently toggle Home & Channel feeds, Subscriptions, Search & Watch sidebar, Shorts & Community posts, and "Join" buttons/shelves.
-- **Channel Allowlist**: Exempt creators whose memberships you subscribe to (e.g. `@ChannelHandle`).
-- **14 languages**: Detects localized Members-only and Members-first badges.
-- **Zero tracking**: 100% local DOM filtering with minimal permissions (`storage` and `*://*.youtube.com/*`).
+## What It Does
 
-## Load Unpacked Locally
+- **Hide or Dim:** Either remove matched items completely (`display: none`) or blur and dim them with hover-to-peek.
+- **Per-section toggles:** Turn filtering on or off independently for:
+  - Home & Channel pages
+  - Subscriptions feed
+  - Search results & Watch sidebar
+  - Shorts & Community posts
+  - "Join" buttons and membership shelves
+- **Channel allowlist:** Exempt creators whose memberships you actually pay for using their handle (e.g. `@ChannelHandle`).
+- **Multi-layer DOM matching:** Catches legacy Polymer badges, 2025–2026 `yt-badge-shape` / `ytBadgeShapeMembership` lockups, and exact leaf-node text. Handles non-breaking spaces and holds up when YouTube rotates CSS class names.
+- **14 languages:** Matches localized "Members only" and "Members first" badge text.
+- **Local only:** No network requests, telemetry, or external dependencies. Permissions are limited to `storage` and `*://*.youtube.com/*`.
 
-You can load this repository directly in Chrome without running a build step:
+## Install
 
-1. Open `chrome://extensions` in Chrome, Brave, Arc, or Edge.
-2. Enable **Developer mode** in the top-right corner.
-3. Click **Load unpacked** and select this repository's root folder (the one containing `manifest.json`).
-4. Refresh any open `youtube.com` tab.
+No build step is required to run the extension from source.
 
-## Build the Extension `.zip`
+1. Download the latest release `.zip` from the **Releases** page and extract it (or clone this repo).
+2. Open `chrome://extensions` in your Chromium browser.
+3. Enable **Developer mode** (top-right).
+4. Click **Load unpacked** and select the folder containing `manifest.json`.
+5. Refresh any open `youtube.com` tabs.
+
+## Build from Source
 
 ```bash
 npm install
@@ -28,19 +36,17 @@ npm run lint
 npm run build
 ```
 
-This generates:
-- `dist/clearfeed-youtube-members-hider-v<version>.zip` — Chrome Web Store-ready archive with `manifest.json` at the root.
-- `dist/clearfeed-youtube-members-hider.zip` — unversioned alias of the same archive.
-- `dist/unpacked/` — clean copy of all packaged extension files.
+Outputs in `dist/`:
 
-## GitHub Actions CI & Releases
+- `clearfeed-youtube-members-hider-v<version>.zip` — Chrome Web Store-ready package with `manifest.json` at the root.
+- `clearfeed-youtube-members-hider.zip` — unversioned copy of the same archive.
+- `unpacked/` — clean directory of the packaged extension files.
 
-Every push, pull request, or manual run triggers `.github/workflows/build.yml`, which:
-1. Validates `manifest.json`, referenced icons/files, and JavaScript syntax (`npm run lint`).
-2. Builds the extension `.zip` (`npm run build`).
-3. Uploads the `.zip` as a downloadable **Workflow Artifact** (`clearfeed-youtube-members-hider-zip`).
+## CI & Releases
 
-To cut a GitHub Release with the `.zip` attached automatically:
+Pushes, pull requests, and manual runs trigger `.github/workflows/build.yml`, which runs `npm run lint` (validating `manifest.json`, icons, referenced files, and JS syntax), runs `npm run build`, and uploads the `.zip` as the `clearfeed-youtube-members-hider-zip` workflow artifact.
+
+To publish a GitHub Release with the `.zip` attached automatically:
 
 ```bash
 git tag v1.1.0
