@@ -1,5 +1,7 @@
 # ClearFeed
 
+![ClearFeed Banner](assets/banner.png)
+
 A Manifest V3 browser extension for Chrome, Brave, Edge, and Arc that hides or dims YouTube Members-only videos, early-access ("Members first") uploads, Shorts, Community posts, and "Join" shelves.
 
 YouTube mixes paywalled uploads into regular feeds with no native way to filter them out. ClearFeed strips them from the DOM locally as you browse.
